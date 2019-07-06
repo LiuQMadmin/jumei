@@ -95,7 +95,7 @@ export default {
       if (page < 8) {
         Indicator.open();
         result = await http.get({
-          url: "/muandbaby/ajaxList?page="+1+"&card_id=7430"
+          url: "/muandbaby/ajaxList?page="+apge+"&card_id=7430"
         });
         this.resultlist = this.resultlist.concat(result.item_list);
          console.log(this.resultlist);

@@ -10,7 +10,7 @@
                 </div>
                 
                 <div>
-                     <span>仅剩04天11时20分</span>
+                     <span>{{getTime}}</span>
                 </div>
                
             </div>
@@ -25,8 +25,27 @@
 
 <script>
 export default {
-    props:["item"]
+    data(){
+        return {
+            end:this.item.end_time,
+            start:this.item.start_time
+        }
+       
+    },
+    props:["item"],
+   computed:{
+       getTime(){
+            
+            let day=Math.floor((this.end-this.start)/(24*60*60))
+            let hours=Math.floor(((this.end-this.start)-(24*60*60)*day)/(60*60))
+            let fen=Math.floor(((this.end-this.start)-(24*60*60)*day-(60*60)*hours)/60)
+            return "仅剩"+day+"天"+hours+"时"+fen+"分"
+        }
+   }
+        
+   
 }
+
 </script>
 
 
