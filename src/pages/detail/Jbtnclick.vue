@@ -51,11 +51,11 @@ export default {
         });
       } else {
         this.bs.finishPullUp();
-        Toast({
-          message: "到底了~",
-          position: "bottom",
-          duration: 2000
-        });
+        // Toast({
+        //   message: "到底了~",
+        //   position: "bottom",
+        //   duration: 2000
+        // });
       }
     });
   }

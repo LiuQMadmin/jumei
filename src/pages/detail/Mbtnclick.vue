@@ -35,12 +35,13 @@ async mounted() {
     });
     // 把取出来的数据放在自己的变量里面
     this.resultlist = result.item_list;
-    console.log(this.resultlist);
+    // console.log(this.resultlist);
 
     Indicator.close();
     this.bs.on("pullingUp", async () => {
+     // this.bs.refresh();
       page++;
-      if (page < 3) {
+      if (page < 8) {
         Indicator.open();
         result = await http.get({
           url: "/index/ajaxDealactList?card_id=4057&client_v=1&page="+page+"&platform=wap&type=pre&page_key=1562308920"
@@ -54,11 +55,11 @@ async mounted() {
         });
       } else {
         this.bs.finishPullUp();
-        Toast({
-          message: "到底了~",
-          position: "bottom",
-          duration: 2000
-        });
+     //    Toast({
+     //      message: "到底了~",
+     //      position: "bottom",
+     //      duration: 2000
+     //    });
       }
     });
   }
