@@ -1,5 +1,5 @@
 <template>
-    <div class="muying">
+    <div id="muying">
         <div class="muying01">
              <div>
                 <img src="//f0.jmstatic.com/btstatic/h5/common/icon_title.png" alt="">
@@ -47,22 +47,20 @@
                 <span>疯抢专场 早10点上新</span>
             </div>
             <muying
-               v-for="item in resultlist" :key="item.item_id" :item="item"
+               v-for="item in resultlist" 
+               :key="item.item_id" 
+               :item="item"
             ></muying>
-
-
-
-
-
-
+             <weibu></weibu>
         </div>
-        
     </div>
 </template>
 <script>
 import { Indicator, Toast } from "mint-ui";
 import http from "../../utils/http";
 import muying from "../detail/newproduct/muying"
+import weibu from "../detail/newproduct/weibu"
+import BScroll from 'better-scroll';
 export default {
      data() {
     return {
@@ -70,11 +68,16 @@ export default {
     }
   },
     components:{
-        muying
+        muying,
+        weibu
     },
 
 
     async mounted() {
+        let bScroll = new BScroll('#muying', {
+        click: true,
+        pullUpLoad: true
+        })
     let page = 1;
     //这里是那边传过来的数据
     Indicator.open({
@@ -87,30 +90,27 @@ export default {
     });
     // 把取出来的数据放在自己的变量里面
     this.resultlist = result.item_list;
-   
-
     Indicator.close();
-    this.bs.on("pullingUp", async () => {
+    bScroll.on("pullingUp", async () => {
       page++;
-      if (page < 8) {
+      if (page < 1) {
         Indicator.open();
         result = await http.get({
-          url: "/muandbaby/ajaxList?page="+apge+"&card_id=7430"
+          url: "/index/ajaxDealactList?card_id=4057&client_v=1&page=" + page
         });
         this.resultlist = this.resultlist.concat(result.item_list);
-         console.log(this.resultlist);
         this.$nextTick(() => {
-          this.bs.refresh(); //重置bScroll高度
+          bScroll.refresh(); //重置bScroll高度
           Indicator.close(); //关闭那个加载提醒
-          this.bs.finishPullUp(); //可以加载下一页了
+          bScroll.finishPullUp(); //可以加载下一页了
         });
       } else {
-        this.bs.finishPullUp();
-        // Toast({
-        //   message: "到底了~",
-        //   position: "bottom",
-        //   duration: 2000
-        // });
+        bScroll.finishPullUp();
+        Toast({
+          message: "到底了~",
+          position: "bottom",
+          duration: 2000
+        });
       }
     });
   }
@@ -126,9 +126,8 @@ export default {
 
 
 <style lang="stylus" scoped>
-.muying
-    height 100%
-    overflow auto
+#muying
+    height 4.3rem
     .muying01
         div:nth-child(1)
                 width 100%
@@ -196,6 +195,4 @@ export default {
                 img 
                     width .14rem
                     height .14rem
-            
-
 </style>

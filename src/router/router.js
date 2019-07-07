@@ -6,6 +6,8 @@ import statou from "../pages/static/statou"
 import shouye from "../pages/static/shouye"
 import mianshui from "../pages/static/mianshui"
 import muying from "../pages/static/muying"
+import qingshe from "../pages/static/qingshe"
+import temai from "../pages/static/temai"
 Vue.use(VueRouter)
 let routes=[
     {
@@ -47,7 +49,15 @@ let routes=[
             {
                 path:"/shouye/muying",
                 component:muying,
-            }
+            },
+            {
+                path:"/shouye/qingshe",
+                component:qingshe,
+            },
+            {
+                path:"/shouye/temai",
+                component:temai,
+            },
 
             
         ]

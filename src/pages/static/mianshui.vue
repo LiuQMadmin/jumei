@@ -25,6 +25,7 @@
                 <span>今日团购，每天10点上新</span>
             </div>
             <jinri v-for="item in resultlist" :key="item.item_id" :item="item"></jinri>
+            <weibu></weibu>
         </div>
      </div>
 </template>
@@ -33,6 +34,7 @@
 import { Indicator, Toast } from "mint-ui";
 import http from "../../utils/http";
 import jinri from "../detail/newproduct/jinri";
+import weibu from "../detail/newproduct/weibu"
 import BScroll from 'better-scroll';
 export default {
  data() {
@@ -43,27 +45,16 @@ export default {
 //   接受父组件传过来的bscroll
   props: ["bs"],
   components: {
-    jinri
+    jinri,
+    weibu
   },
   async mounted() {
-
-
-
-
  let page = 5;
-
-        // let bScroll = new BScroll('.mianshui', {
-        // probeType:2,
-        // click: true,
-        // pullUpLoad: true
-        // })
-
-
-
-
-
-
-   
+        let bScroll = new BScroll('.mianshui', {
+        probeType:2,
+        click: true,
+        pullUpLoad: true
+        })
     //这里是那边传过来的数据
     Indicator.open({
       text: "加载中...",
@@ -78,26 +69,26 @@ export default {
     
     Indicator.close();
    
-    this.bs.on("pullingUp", async () => {
+    bScroll.on("pullingUp", async () => {
       page++;
-      if (page < 10) {
+      if (page < 8) {
         Indicator.open();
         result = await http.get({
           url: "/index/ajaxDealactList?card_id=4057&client_v=1&page=" + page
         });
         this.resultlist = this.resultlist.concat(result.item_list);
         this.$nextTick(() => {
-          this.bs.refresh(); //重置bScroll高度
+          bScroll.refresh(); //重置bScroll高度
           Indicator.close(); //关闭那个加载提醒
-          this.bs.finishPullUp(); //可以加载下一页了
+          bScroll.finishPullUp(); //可以加载下一页了
         });
       } else {
-        this.bs.finishPullUp();
-        // Toast({
-        //   message: "到底了~",
-        //   position: "bottom",
-        //   duration: 2000
-        // });
+        bScroll.finishPullUp();
+        Toast({
+          message: "到底了~",
+          position: "bottom",
+          duration: 2000
+        });
       }
     });
   }
@@ -111,12 +102,9 @@ export default {
 
 <style lang="stylus" scoped>
 .mianshui
-    height 100%
-    overflow auto
+    height  4.3rem
     .mianshui01
             width 100%
-            height .94rem
-            border-bottom .08rem solid #f5f5f5
             ul
                 width 100%
                 height .94rem

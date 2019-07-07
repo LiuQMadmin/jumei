@@ -25,11 +25,15 @@
                 </router-link>
             </div>
             <div class="swiper-slide">
+                  <router-link active-class="active" exact to="/shouye/qingshe">
                     <span>轻奢</span>
+                     </router-link>
             </div>
             
             <div class="swiper-slide">
+                <router-link active-class="active" exact to="/shouye/temai">
                     <span>名品特卖</span>
+                    </router-link>
             </div>
         </div>
     </div>
