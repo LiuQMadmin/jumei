@@ -1,7 +1,11 @@
 <template>
+<div id="mingri">
 <div>
       <mingri v-for="item in resultlist" :key="item.item_id" :item="item"></mingri>
+      <Weibu></Weibu>
 </div>
+</div>
+
  
 </template>
 
@@ -10,19 +14,28 @@
 import { Indicator, Toast } from "mint-ui";
 import http from "../../utils/http";
 import mingri from "./newproduct/mingri";
+import Weibu from "../detail/newproduct/weibu"
+import BScroll from "better-scroll";
 export default {
   data() {
     return {
       resultlist: []
     }
   },
-  props: ["bs"],
   components: {
-    mingri
+    mingri,
+    Weibu
   },
 
 
 async mounted() {
+
+      let bScroll = new BScroll("#mingri", {
+          probeType: 2,
+          click: true,
+          pullUpLoad: true
+        });
+
     let page = 1;
     //这里是那边传过来的数据
     Indicator.open({
@@ -35,12 +48,13 @@ async mounted() {
     });
     // 把取出来的数据放在自己的变量里面
     this.resultlist = result.item_list;
-    console.log(this.resultlist);
+    // console.log(this.resultlist);
 
     Indicator.close();
-    this.bs.on("pullingUp", async () => {
+    bScroll.on("pullingUp", async () => {
+     // this.bs.refresh();
       page++;
-      if (page < 3) {
+      if (page < 1) {
         Indicator.open();
         result = await http.get({
           url: "/index/ajaxDealactList?card_id=4057&client_v=1&page="+page+"&platform=wap&type=pre&page_key=1562308920"
@@ -48,12 +62,12 @@ async mounted() {
         this.resultlist = this.resultlist.concat(result.item_list);
 
         this.$nextTick(() => {
-          this.bs.refresh(); //重置bScroll高度
+          tbScroll.refresh(); //重置bScroll高度
           Indicator.close(); //关闭那个加载提醒
-          this.bs.finishPullUp(); //可以加载下一页了
+          bScroll.finishPullUp(); //可以加载下一页了
         });
       } else {
-        this.bs.finishPullUp();
+        bScroll.finishPullUp();
         Toast({
           message: "到底了~",
           position: "bottom",
@@ -62,22 +76,14 @@ async mounted() {
       }
     });
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 </script>
+
+<style lang="stylus" scoped>
+#mingri
+  height 4rem
+</style>
+
 
 
 

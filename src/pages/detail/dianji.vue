@@ -2,14 +2,14 @@
     <div class="btn-dianji">
         <div>
             <span>
-            <router-link active-class="active" exact to="/jinri">
+            <router-link active-class="active"  to="/shouye/index/jinri">
             今日10点上新
             </router-link>
             </span>
         </div>
         <div>
             <span>
-                <router-link active-class="active" exact to="/mingri">
+                <router-link active-class="active"  to="/shouye/index/mingri">
                 明日10点预告
                 </router-link>
                 </span>

@@ -5,6 +5,7 @@ import App from './App.vue'
 import './assets/styles/reset.styl'
 import "./assets/swiper/css/swiper.min.css"
 import router from "./router/router"
+import './mixins/scroll'
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,21 +1,39 @@
 <template>
     <div class="swiper-container" id="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide active">
-                    <span>首页</span>
-            </div>
-            <div class="swiper-slide">
-                    <span>免税店</span>
-            </div>
-            <div class="swiper-slide">
-                    <span>母婴</span>
-            </div>
-            <div class="swiper-slide">
-                    <span>轻奢</span>
+            <div class="swiper-slide ">
+                 <router-link active-class="active" to="/shouye/index">
+                    <span>
+                       
+                        首页
+                        
+                        </span>
+                        </router-link>
             </div>
             
             <div class="swiper-slide">
+                <router-link active-class="active" exact to="/shouye/mianshui">
+                    <span> 
+                        免税店
+                        </span>
+                        </router-link>
+            </div>
+             
+            <div class="swiper-slide">
+                <router-link active-class="active" exact to="/shouye/muying">
+                    <span>母婴</span>
+                </router-link>
+            </div>
+            <div class="swiper-slide">
+                  <router-link active-class="active" exact to="/shouye/qingshe">
+                    <span>轻奢</span>
+                     </router-link>
+            </div>
+            
+            <div class="swiper-slide">
+                <router-link active-class="active" exact to="/shouye/temai">
                     <span>名品特卖</span>
+                    </router-link>
             </div>
         </div>
     </div>
