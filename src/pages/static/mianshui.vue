@@ -31,66 +31,33 @@
 </template>
 
 <script>
-import { Indicator, Toast } from "mint-ui";
-import http from "../../utils/http";
 import jinri from "../detail/newproduct/jinri";
 import weibu from "../detail/newproduct/weibu"
-import BScroll from 'better-scroll';
 export default {
  data() {
     return {
       resultlist: []
     }
   },
-//   接受父组件传过来的bscroll
-  props: ["bs"],
   components: {
     jinri,
     weibu
   },
   async mounted() {
- let page = 5;
-        let bScroll = new BScroll('.mianshui', {
-        probeType:2,
-        click: true,
-        pullUpLoad: true
-        })
-    //这里是那边传过来的数据
-    Indicator.open({
-      text: "加载中...",
-      spinnerType: "triple-bounce"
-    });
-    //   进行ajax请求
-    let result = await http.get({
-      url: "/index/ajaxDealactList?card_id=4057&client_v=1&page="+page
-    });
-    // 把取出来的数据放在自己的变量里面
-    this.resultlist = result.item_list;
-    
-    Indicator.close();
-   
-    bScroll.on("pullingUp", async () => {
-      page++;
-      if (page < 8) {
-        Indicator.open();
-        result = await http.get({
-          url: "/index/ajaxDealactList?card_id=4057&client_v=1&page=" + page
-        });
-        this.resultlist = this.resultlist.concat(result.item_list);
-        this.$nextTick(() => {
-          bScroll.refresh(); //重置bScroll高度
-          Indicator.close(); //关闭那个加载提醒
-          bScroll.finishPullUp(); //可以加载下一页了
-        });
-      } else {
-        bScroll.finishPullUp();
-        Toast({
-          message: "到底了~",
-          position: "bottom",
-          duration: 2000
-        });
-      }
-    });
+    this.scroll(
+      // 这里面都是参数
+      this,
+      // 要给那个元素添加弹性滚动
+      ".mianshui",
+      // 开始椰树和结束页数
+        5,8,
+      // 第一次请求的url
+      "/index/ajaxDealactList?card_id=4057&client_v=1&page=5",
+      // 第二次请求的url
+      "/index/ajaxDealactList?card_id=4057&client_v=1&page=",
+      // 表示这个page分页的时候没有在中间拼接
+      "",
+    )
   }
 }
 </script>

@@ -10,13 +10,18 @@ import { Indicator, Toast } from 'mint-ui'
 // 定义一个混入，就是提取出来公共的部分，可以在全局进行引用挂在在Vue上面
 Vue.mixin({
     methods:{
-        async scroll(vm,document,startpage,endpage,url,nexturl){
-            let page = 0
+        async scroll(vm,document,startpage,endpage,url,starturl,endurl){
+            let page = startpage
              // 添加弹性滚动效果
              let bScroll = new BScroll(document, {
                 pullUpLoad: true,
                 click: true
             })
+            // 这里是为了获取滚动距离
+            // bScroll.on("scroll",()=>{
+            //     console.log(bScroll.y)
+            // })
+           
             // 打开加载提醒
             Indicator.open({
                 text: "加载中...",
@@ -27,13 +32,10 @@ Vue.mixin({
             vm.resultlist = result.item_list;
             // 关闭加载提醒
             Indicator.close()
-            // 这个是二次加载提醒
-            Indicator.open({
-                text: "加载中...",
-                spinnerType: "triple-bounce"
-            });
             bScroll.on("pullingUp", async () => {
+                console.log()
                 page++;
+                // 总共可以加载endpage页数据
                 if (page < endpage) {
                     // 加载提醒
                     Indicator.open({
@@ -42,7 +44,7 @@ Vue.mixin({
                     })
                     // 第二次ajax跨域请求
                     result = await http.get({
-                        url:nexturl
+                        url:starturl+page+endurl
                     })
                     vm.resultlist = vm.resultlist.concat(result.item_list);
                     vm.$nextTick(() => {

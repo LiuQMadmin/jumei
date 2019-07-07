@@ -47,18 +47,11 @@
         <Weibu></Weibu>
     </div>
     
-</div>
-
-   
+</div> 
 </template>
-
 <script>
-import { Indicator, Toast } from "mint-ui";
-import http from "../../utils/http";
-import BScroll from 'better-scroll';
 import qingshe from "../detail/newproduct/qingshe"
 import Weibu from "../detail/newproduct/weibu"
-
 export default {
     data() {
     return {
@@ -70,56 +63,20 @@ export default {
         Weibu
     },
     async mounted(){
-        let page=1;
-        let bScroll = new BScroll('#qingshe', {
-        probeType:2,
-        click: true,
-        pullUpLoad: true
-        })
-      new Swiper('#swiper1',{
-            autoplay:true,
-            effect : 'coverflow',
-        })
-
-    //这里是那边传过来的数据
-    Indicator.open({
-      text: "加载中...",
-      spinnerType: "triple-bounce"
-    });
-    //   进行ajax请求
-    let result = await http.get({
-      url: "/muandbaby/ajaxList?page=1&card_id=7430"
-    });
-    // 把取出来的数据放在自己的变量里面
-    this.resultlist = result.item_list;
-    Indicator.close();
-    bScroll.on("pullingUp", async () => {
-      page++;
-      if (page < 1) {
-        Indicator.open();
-        result = await http.get({
-          url: "/muandbaby/ajaxList?page="+ page+"&card_id=7430" 
-        });
-        this.resultlist = this.resultlist.concat(result.item_list);
-        this.$nextTick(() => {
-          bScroll.refresh(); //重置bScroll高度
-          Indicator.close(); //关闭那个加载提醒
-          bScroll.finishPullUp(); //可以加载下一页了
-        });
-      } else {
-        bScroll.finishPullUp()
-        Toast({
-          message: "到底了~",
-          position: "bottom",
-          duration: 2000
-        })
-      }
-    });
-
-
-
-
-
+        this.scroll(
+        // 这里面都是参数
+        this,
+        // 要给那个元素添加弹性滚动
+        "#qingshe",
+        // 开始页数和结束页数
+            1,1,
+        // 第一次请求的url
+        "/muandbaby/ajaxList?page=1&card_id=7430",
+        // 第二次请求的url，表示没有第二次请求
+        "",
+        // 表示这个page分页的时候没有在中间拼接
+        "",
+        )
     },
 }
 </script>
