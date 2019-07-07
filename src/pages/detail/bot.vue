@@ -9,19 +9,22 @@
             </router-link>
              <router-link tag="li" active-class="active" to="/pintuan">
             <li>
-                
                 <b class="yo-ico">&#xe618;</b>
                 <span>拼团</span> 
             </li>
             </router-link>
+            <router-link tag="li" active-class="active" to="/gouwuche">
             <li>
                 <b class="yo-ico">&#xe60c;</b>
                 <span>购物车</span>
             </li>
+             </router-link>
+             <router-link tag="li" active-class="active" to="/wode">
             <li>
                 <b class="yo-ico">&#xe615;</b>
                 <span>我的</span>
             </li>
+            </router-link>
         </ul>
     </div>
 </template>

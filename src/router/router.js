@@ -9,6 +9,7 @@ import muying from "../pages/static/muying"
 import qingshe from "../pages/static/qingshe"
 import temai from "../pages/static/temai"
 import pintuan from "../pages/pintuan/pintuan"
+import wode from "../pages/wode/wode"
 Vue.use(VueRouter)
 let routes=[
     {
@@ -67,6 +68,10 @@ let routes=[
     {
         path:"/pintuan",
         component:pintuan,
+    },
+    {
+        path:"/wode",
+        component:wode,
     },
    
 ]
