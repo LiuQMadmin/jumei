@@ -1,77 +1,53 @@
 <template>
   <div id="jinri">
-    <div>
+    <div class="jinri" :class="{'toTop':isActive==1}"  >
       <jinri v-for="item in resultlist" :key="item.item_id" :item="item"></jinri>
-      <Weibu></Weibu>
+      <Weibu></Weibu> 
     </div>
   </div>
 </template>
 
 <script>
-import { Indicator, Toast } from "mint-ui";
-import http from "../../utils/http";
-import BScroll from "better-scroll";
 import jinri from "./newproduct/jinri";
 import Weibu from "../detail/newproduct/weibu"
+import fanhui from "./newproduct/fanhui"
 export default {
   data() {
     return {
-      resultlist: []
+      resultlist: [],
+      isActive:0
     }
   },
-//   接受父组件传过来的bscroll
   components: {
     jinri,
-    Weibu
+    Weibu,
+    fanhui
+  },
+  methods:{
+    toTop(){
+     this.isActive=1
+
+    }
   },
   async mounted() {
-    let bScroll = new BScroll("#jinri", {
-          probeType: 2,
-          click: true,
-          pullUpLoad: true
-      });
-    let page = 1;
-    //这里是那边传过来的数据
-    Indicator.open({
-      text: "加载中...",
-      spinnerType: "triple-bounce"
-    });
-    //   进行ajax请求
-    let result = await http.get({
-      url: "/index/ajaxDealactList?card_id=4057&client_v=1&page=2"
-    });
-    // 把取出来的数据放在自己的变量里面
-    this.resultlist = result.item_list;
-    // console.log(this.resultlist);
-
-    Indicator.close();
-    bScroll.on("pullingUp", async () => {
-      page++;
-      if (page < 8) {
-        Indicator.open();
-        result = await http.get({
-          url: "/index/ajaxDealactList?card_id=4057&client_v=1&page=" + page
-        });
-        this.resultlist = this.resultlist.concat(result.item_list);
-
-        this.$nextTick(() => {
-          bScroll.refresh(); //重置bScroll高度
-          Indicator.close(); //关闭那个加载提醒
-          bScroll.finishPullUp(); //可以加载下一页了
-        });
-      } else {
-        bScroll.finishPullUp();
-        Toast({
-          message: "到底了~",
-          position: "bottom",
-          duration: 2000
-        });
-      }
-    });
+    this.scroll(
+      // 这里面都是参数
+      this,
+      // 要给那个元素添加弹性滚动
+      "#jinri",
+      // 开始页数和结束页数
+        1,8,
+      // 第一次请求的url
+      "/index/ajaxDealactList?card_id=4057&client_v=1&page=2",
+      // 第二次请求的url
+      "/index/ajaxDealactList?card_id=4057&client_v=1&page=",
+      // 表示这个page分页的时候没有在中间拼接
+      "",
+    )
   }
-};
+}
 </script>
 <style lang="stylus" scoped>
 #jinri
-  height 4rem
+    height 4rem
 </style>
