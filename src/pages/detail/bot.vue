@@ -1,15 +1,19 @@
 <template>
     <div class="bot-div">
         <ul>
-            <li class="active">
+            <router-link tag="li" active-class="active" to="/shouye">
+            <li>
                <b class="yo-ico">&#xe616;</b>
                 <span>首页</span>
             </li>
+            </router-link>
+             <router-link tag="li" active-class="active" to="/pintuan">
             <li>
                 
                 <b class="yo-ico">&#xe618;</b>
                 <span>拼团</span> 
             </li>
+            </router-link>
             <li>
                 <b class="yo-ico">&#xe60c;</b>
                 <span>购物车</span>

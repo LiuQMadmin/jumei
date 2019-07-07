@@ -29,7 +29,11 @@ Vue.mixin({
             })
             // 进行ajax跨域请求
             let result=await http.get({url:url})
-            vm.resultlist = result.item_list;
+            if(result.item_list!==undefined){
+                vm.resultlist = result.item_list;
+            }else{
+                vm.resultlist = result.data;
+            }
             // 关闭加载提醒
             Indicator.close()
             bScroll.on("pullingUp", async () => {
@@ -46,7 +50,12 @@ Vue.mixin({
                     result = await http.get({
                         url:starturl+page+endurl
                     })
-                    vm.resultlist = vm.resultlist.concat(result.item_list);
+                    if(result.item_list!==undefined){
+                        vm.resultlist = vm.resultlist.concat(result.item_list);
+                    }else{
+                        vm.resultlist = vm.resultlist.concat(result.data);
+                    }
+                    
                     vm.$nextTick(() => {
                         bScroll.refresh(); //重置bScroll高度
                         Indicator.close(); //关闭那个加载提醒

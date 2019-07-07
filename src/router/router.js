@@ -8,6 +8,7 @@ import mianshui from "../pages/static/mianshui"
 import muying from "../pages/static/muying"
 import qingshe from "../pages/static/qingshe"
 import temai from "../pages/static/temai"
+import pintuan from "../pages/pintuan/pintuan"
 Vue.use(VueRouter)
 let routes=[
     {
@@ -61,27 +62,11 @@ let routes=[
 
             
         ]
-    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    },
+    {
+        path:"/pintuan",
+        component:pintuan,
     },
    
 ]
