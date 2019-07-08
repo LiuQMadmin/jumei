@@ -63,10 +63,7 @@
                 <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/myfund.png" alt="">
             </div>
             <div class="zichan-two">
-                 &nbsp; 我的资产
-            </div>
-            <div class="zichan-there">
-                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+                &nbsp; 我的资产
             </div>
         </div>
         <ul class="youhui">
@@ -81,7 +78,55 @@
                 <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/rmaservice.png" alt="">
             </div>
             <div class="shouhou-two">
-                 &nbsp; 我的资产
+                 &nbsp; 售后服务
+            </div>
+            <div class="shouhou-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
+        <div class="shouhou">
+             &nbsp;
+            <div class="shouhou-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/feedback.png" alt="">
+            </div>
+            <div class="shouhou-two">
+                 &nbsp; 意见反馈
+            </div>
+            <div class="shouhou-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
+         <div class="shouhou">
+             &nbsp;
+            <div class="shouhou-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/address.png" alt="">
+            </div>
+            <div class="shouhou-two">
+                 &nbsp; 收货地址
+            </div>
+            <div class="shouhou-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
+         <div class="shouhou">
+             &nbsp;
+            <div class="shouhou-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/logout.png" alt="">
+            </div>
+            <div class="shouhou-two">
+                 &nbsp; 退出登录
+            </div>
+            <div class="shouhou-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
+        <div class="shouhou">
+             &nbsp;
+            <div class="shouhou-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/tel.png" alt="">
+            </div>
+            <div class="shouhou-two">
+                 &nbsp; 400-123-8888
             </div>
             <div class="shouhou-there">
                 <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
@@ -204,11 +249,6 @@
                 height .2rem
         .zichan-two
             flex 1
-        .zichan-there
-            padding-right .07rem
-            img 
-                width .2rem
-                height .2rem
     .youhui
         height .53rem
         width 100%
