@@ -25,19 +25,19 @@
         </div>
         <div class="mydingdan">
              &nbsp;
-            <span>
+            <div class="mydingdan-one">
                 <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/myorder.png" alt="">
-            </span>
-            <i>
+            </div>
+            <div class="mydingdan-two">
                  &nbsp; 我的订单
-            </i>
-            <span class="quanbu">
-                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp;查看我的全部订单
-            </span>
-            <span>
+            </div>
+            <div class="quanbu mydingdan-there">
+                 
+            查看我的全部订单&nbsp;
+            </div>
+            <div class="mydingdan-four">
                 <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
-            </span>
+            </div>
         </div>
         <ul class="detaillist">
             <li>
@@ -57,6 +57,36 @@
                 <span>退货/退款</span>
             </li>
         </ul>
+        <div class="zichan">
+             &nbsp;
+            <div class="zichan-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/myfund.png" alt="">
+            </div>
+            <div class="zichan-two">
+                 &nbsp; 我的资产
+            </div>
+            <div class="zichan-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
+        <ul class="youhui">
+            <li>现金券</li>
+            <li>红包</li>
+            <li>聚美余额</li>
+            <li>礼品卡</li>
+        </ul>
+        <div class="shouhou">
+             &nbsp;
+            <div class="shouhou-one">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/myjumei/rmaservice.png" alt="">
+            </div>
+            <div class="shouhou-two">
+                 &nbsp; 我的资产
+            </div>
+            <div class="shouhou-there">
+                <img src="https://f0.jmstatic.com/static_account/dist/v1.0.157339/images/mobile_usercenter/advance_bg.png" alt="">
+            </div>
+        </div>
     </div>
 </template>
 <style lang="stylus" scoped>
@@ -126,7 +156,15 @@
         height .45rem
         border-top .1rem solid #f5f5f5
         line-height .35rem
-        span 
+        display flex
+        .mydingdan-one 
+            img 
+                width .2rem
+                height .2rem
+        .mydingdan-two
+            flex 1
+        .mydingdan-four
+            padding-right .07rem
             img 
                 width .2rem
                 height .2rem
@@ -135,10 +173,9 @@
             font-size .12rem
     .detaillist
         width 100%
-        height .83rem
-        // background red
+        height .75rem
         border-top .01rem solid #f5f5f5
-        border-bottom .12rem solid #f5f5f5
+        border-bottom .04rem solid #f5f5f5
         display flex
         li
             flex 1
@@ -152,7 +189,55 @@
             span
                 color #666
                 font-size .12rem
-
-
+    .zichan
+        width 100%
+        height .46rem
+        border-top .1rem solid #f5f5f5
+        border-bottom .01rem solid #f5f5f5
+        line-height .35rem
+        display flex
+        .zichan-one
+            width .2rem
+            height .2rem
+            img 
+                width .2rem
+                height .2rem
+        .zichan-two
+            flex 1
+        .zichan-there
+            padding-right .07rem
+            img 
+                width .2rem
+                height .2rem
+    .youhui
+        height .53rem
+        width 100%
+        border-bottom .12rem solid #f5f5f5
+        display flex
+        li
+            flex 1
+            text-align center
+            line-height .41rem
+            font-size .12rem
+            color #666
+    .shouhou
+        width 100%
+        height .45rem
+        border-top .1rem solid #f5f5f5
+        line-height .35rem
+        display flex
+        .shouhou-one
+            width .2rem
+            height .2rem
+            img 
+                width .2rem
+                height .2rem
+        .shouhou-two
+            flex 1
+        .shouhou-there
+            padding-right .07rem
+            img 
+                width .2rem
+                height .2rem
 </style>
 
