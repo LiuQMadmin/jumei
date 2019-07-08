@@ -222,8 +222,8 @@
             color #666
     .shouhou
         width 100%
-        height .45rem
-        border-top .1rem solid #f5f5f5
+        height .36rem
+        border-bottom .01rem solid #f5f5f5
         line-height .35rem
         display flex
         .shouhou-one

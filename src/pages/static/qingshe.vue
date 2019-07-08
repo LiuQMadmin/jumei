@@ -63,6 +63,13 @@ export default {
         Weibu
     },
     async mounted(){
+        new Swiper('#swiper1',{
+            loop:true,
+            effect:'coverflow',
+            autoplay: {
+            delay: 3000,
+            }
+        })
         this.scroll(
         // 这里面都是参数
         this,
