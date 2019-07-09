@@ -1,7 +1,7 @@
 <template>
     <div class="swiper-container" id="swiper">
         <div class="swiper-wrapper">
-            <div class="swiper-slide ">
+            <div class="swiper-slide">
                  <router-link active-class="active" to="/shouye/index">
                     <span>
                         首页
@@ -40,7 +40,7 @@
 export default {
      mounted(){
       new Swiper('#swiper',{
-            slidesPerView : 4,
+            slidesPerView : 3.6,
         })
     },
 }

@@ -55,7 +55,6 @@ Vue.mixin({
                     }else{
                         vm.resultlist = vm.resultlist.concat(result.data);
                     }
-                    
                     vm.$nextTick(() => {
                         bScroll.refresh(); //重置bScroll高度
                         Indicator.close(); //关闭那个加载提醒
