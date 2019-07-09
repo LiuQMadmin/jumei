@@ -4,9 +4,7 @@
             <div class="swiper-slide ">
                  <router-link active-class="active" to="/shouye/index">
                     <span>
-                       
                         首页
-                        
                         </span>
                         </router-link>
             </div>

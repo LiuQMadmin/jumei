@@ -10,7 +10,9 @@
         <!-- 头部搜索信息 -->
         <daohang></daohang>
         <!-- 这里是滚动的路由插入 -->
+         <keep-alive>
         <router-view></router-view>
+        </keep-alive>
     </div>
     </main>
     <!-- 尾部导航 -->

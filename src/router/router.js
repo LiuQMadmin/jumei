@@ -10,6 +10,7 @@ import qingshe from "../pages/static/qingshe"
 import temai from "../pages/static/temai"
 import pintuan from "../pages/pintuan/pintuan"
 import wode from "../pages/wode/wode"
+import Detail from "../pages/detail/xiangqingye/Detail"
 Vue.use(VueRouter)
 let routes=[
     {
@@ -73,6 +74,12 @@ let routes=[
         path:"/wode",
         component:wode,
     },
+    {
+        path: '/detail/:id',
+        // 这个是push的时候起到的作用，能根据这个name来添加模板
+        name: 'detail',
+        component: Detail
+    }
    
 ]
 let router=new VueRouter({

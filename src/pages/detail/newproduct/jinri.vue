@@ -1,5 +1,5 @@
 <template>
-        <div class="list" :style="{backgroundImage: 'url('+item.image_url_set.dx_image.url['480']+')'}">
+        <div  @click="handleClick(item.item_id)" class="list" :style="{backgroundImage: 'url('+item.image_url_set.dx_image.url['480']+')'}">
         <div>
             <div class="proname">{{item.name}}
             </div>
@@ -16,6 +16,16 @@
 <script>
 export default {
     props:["item"],
+    methods:{
+        handleClick(id) {
+        console.log(id)
+        this.$router.push({
+            name: 'detail',
+            // 把这个参数传递给动态路由
+            params: {id}
+        })
+        }
+    }
 }
 </script>
 
@@ -30,11 +40,10 @@ export default {
         width 1.74rem
         height 100%
         float right
-        // background red
         div:nth-child(1)
             width 1.74rem
             height .34rem
-            // background yellow
+            // color #333
             font-size .13rem
             margin-top .1rem
         div:nth-child(2)
