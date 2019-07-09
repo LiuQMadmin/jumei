@@ -3,10 +3,10 @@
     <div class="qingshe">
         <div class="swiper-container" id="swiper1">
             <div class="swiper-wrapper">
-                <div class="swiper-slide ">
+                <div class="swiper-slide">
                     <img src="http://mp6.jmstatic.com/mobile/card_material/item_562_2048_838-ipad2048_1562319543.jpeg?imageView2/2/w/640/q/90" alt="">
                 </div>
-                <div class="swiper-slide ">
+                <div class="swiper-slide">
                     <img src="http://mp5.jmstatic.com/mobile/card_material/item_562_2048_838-ipad2048_1562319583.jpeg?imageView2/2/w/640/q/90" alt="">
                 </div>
             </div>

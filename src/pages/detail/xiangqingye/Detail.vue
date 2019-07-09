@@ -14,11 +14,7 @@
                </div>
            </div>
            <!-- 这里引入一个轮播图 -->
-            <!-- <div class="swiper-container" id="swiper">
-                <div class="swiper-container" id="swiper"> -->
-                    <!-- <lunbo :imgresult="imgresult"></lunbo> -->
-                <!-- </div>
-            </div> -->
+                    <lunbo :imgresult="imgresult"></lunbo>
        </div>
     </main>
     <nav class="nav">
@@ -58,26 +54,28 @@ export default {
     // 这个是为了过滤标题名字然后进行添加省略符
     filters: {
         ellipsis (value) {
-        if (value.length > 23) {
-            return value.slice(0,23) + '...'
+        if (value.length > 18) {
+            return value.slice(0,18) + '...'
         }
         return value
         }
     },
-    async mounted(){
-        // console.log(this.$route.params.id)
+    async activated() {
         let imgurl=this.$route.params.id
-        console.log(/^ht/.imgurl)
-        // if(){
-        //     let result=await http.get({
-        //      url:"/product/ajaxStaticDetail?item_id="+this.$route.params.id+"&type=global_deal"
-        //     })
-        // }
-        // console.log(result)
-        // this.imgresult=result.image_url_set.single_many
-        // this.imgresult=result.data
-        // console.log(this.imgresult)
-
+        if(/^[ht]/.test(imgurl)){
+            let result=await http.get({
+             url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=global_deal"
+            })
+            this.imgresult=result.data
+            this.name=this.imgresult.qrshare_product_name
+            console.log(result.data.qrshare_product_name)
+        }else{
+             let result=await http.get({
+             url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=jumei_pop"
+             })
+             this.imgresult=result.data
+             this.name=this.imgresult.qrshare_product_name
+        }
     },
     methods: {
     handleClick() {

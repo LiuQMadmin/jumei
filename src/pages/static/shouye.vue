@@ -1,7 +1,8 @@
 <template>
     <div class="shouye">
         <Dianji></Dianji>
-        <router-view></router-view>
+            <router-view></router-view>
+        
     </div>
 </template>
 <script>

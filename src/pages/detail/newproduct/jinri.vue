@@ -18,7 +18,6 @@ export default {
     props:["item"],
     methods:{
         handleClick(id) {
-            // console.log(id)
         this.$router.push({
             name: 'detail',
             // 把这个参数传递给动态路由

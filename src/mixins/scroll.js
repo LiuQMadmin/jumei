@@ -37,7 +37,6 @@ Vue.mixin({
             // 关闭加载提醒
             Indicator.close()
             bScroll.on("pullingUp", async () => {
-                console.log()
                 page++;
                 // 总共可以加载endpage页数据
                 if (page < endpage) {
