@@ -15,12 +15,12 @@
 <script>
 export default {
   props: ["imgresult"],
-  mounted(){
+  activated(){
       console.log(this.imgresult)
       new Swiper('#detail-swiper',{
           effect :"coverflow"
       })
-  }
+  },
 }
 </script>
 <style lang="stylus" scoped>

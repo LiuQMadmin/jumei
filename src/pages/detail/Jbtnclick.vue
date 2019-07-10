@@ -6,7 +6,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import jinri from "./newproduct/jinri";
 import Weibu from "../detail/newproduct/weibu"
@@ -30,6 +29,7 @@ export default {
   },
   // 这里本来是mounted函数
     async mounted() {
+    
     this.scroll(
       // 这里面都是参数
       this,
