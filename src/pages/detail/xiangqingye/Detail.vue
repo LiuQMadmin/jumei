@@ -30,7 +30,8 @@
             </div>
             <div class="normal_desc">
                 <span class="desc_iconv2">聚美自营</span>
-                【官方授权】爱敬AGE20'S牛奶亮白遮瑕精华气垫粉底膏12.5g*2
+                <!-- 【官方授权】爱敬AGE20'S牛奶亮白遮瑕精华气垫粉底膏12.5g*2 -->
+                {{name}}
             </div>
             <div class="postage-wrap">
                 <div class="postage-type">运费</div>
@@ -67,20 +68,26 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="tuwen-tab"> -->
-            <mt-navbar class="tuwen-tab" v-model="selected">
-                <mt-tab-item class="pir-one" id="1">图文详情</mt-tab-item>
-                <mt-tab-item class="pir-two" id="2">商品参数</mt-tab-item>
-                 <mt-tab-item class="pir-there" id="3">商品参数</mt-tab-item>
-                <!-- <div class="pir-one">图文详情</div>
-                <div class="pir-two">图文详情</div> -->
-            </mt-navbar> 
-            <div>
-                <mt-cell class="page-part" title="当前选中">{{ selected }}</mt-cell>
+            <!-- 这里加载商品的图片详情 -->
+            <div class="detail-img">
+                <detailimg :imgurl="imgresult"></detailimg>
+            </div>
+            <div class="guanggao">
+                您也许还喜欢
+            </div>
+            <div class="cainixihuan">
+                <ul>
+                    <li v-for="item in datacaini" :key="item.item_id">
+                        <img :src="item.image_url_set.single['480']" alt="">
+                        <div class="goodsname">{{item.name}}</div>
+                        <div class="goodsprice">
+                            <span>¥{{item.jumei_price}}</span>&nbsp;
+                            <i>¥{{item.market_price}}</i>
+                        </div>
+                    </li>
+                </ul>
             </div>
             
-
-            <!-- </div> -->
        </div>
     </main>
     <nav class="nav">
@@ -103,22 +110,23 @@
 </template>
 <script>
 import { Navbar, TabItem } from 'mint-ui';
-import lunbo from "./imglunbo"
+import detailimg from "./detailimg"
 import http from '../../../utils/http'
 export default {
     components:{
-        lunbo,
+        detailimg,
         [Navbar.name]:Navbar,
         [TabItem.name]:TabItem,
     },
     data(){
         return {
+            result:{},
             // 这个里面接受ajax里面发来的数据
             resultlist:[],
             //  这个里面接受轮播图片的链接
             imgresult:[],
             name:"",
-            selected: '2' 
+            datacaini:{}
         }
     },
     // 这个是为了过滤标题名字然后进行添加省略符
@@ -136,16 +144,23 @@ export default {
             let result=await http.get({
              url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=global_deal"
             })
+            let resultcaini=await http.get({
+             url:"/recommend/sale?item_id="+imgurl+"&type=global_deal"
+            })
             this.imgresult=result.data
             this.name=this.imgresult.qrshare_product_name
-            console.log(result.data)
+            this.datacaini=resultcaini.item_list
+            // console.log(result.data.properties)
         }else{
              let result=await http.get({
              url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=jumei_pop"
              })
+             let resultcaini=await http.get({
+             url:"/recommend/sale?item_id="+imgurl+"&type=jumei_pop"
+            })
              this.imgresult=result.data
              this.name=this.imgresult.qrshare_product_name
-             console.log(result.data)
+             this.datacaini=resultcaini.item_list
         }
         new Swiper('#detail-swiper',{})
     },
@@ -155,9 +170,6 @@ export default {
         this.$router.go(-1)
     }
   },
-  destoryed(){
-      console.log("销毁了")
-  }
 }
 </script>
 
@@ -170,13 +182,14 @@ export default {
     background #fff
     #detail
         flex 1
-        overflow scroll
+        overflow-y scroll
+        overflow-x hidden
         .detail
             .header
                 height .38rem
                 display flex
                 background #fff
-                border-bottom .01rem solid red
+                border-bottom .01rem solid #f5f5f5
                 .header-one
                     width .32rem
                     height .38rem
@@ -247,7 +260,6 @@ export default {
             .introductions-content
                 width 100%
                 height .83rem
-               
                 display flex
                 font-size .13rem
                 .introduction-type
@@ -286,19 +298,50 @@ export default {
                         img 
                             width .12rem
                             height .12rem
-            .tuwen-tab
-                width 3.2rem
-                height .38rem
-                display flex
-                justify-content center
+            .guanggao
+                width 100%
+                height .37rem
+                background #f5f5f5
                 text-align center
-                line-height .38rem
-                .pir-one
-                    width 1.02rem
-                    height .38rem
-                .pir-two 
-                    width 1.02rem
-                    height .38rem
+                line-height .37rem
+            .cainixihuan
+                width 100%
+                background #F5F5F5
+                padding .03rem
+                ul 
+                    display flex
+                    flex-wrap wrap
+                    padding .02rem
+                    li 
+                        width 50%
+                        height 2.25rem
+                        border .03rem solid #F5F5F5
+                        border-radius 10px
+                        padding-top .1rem
+                        background #fff
+                        img     
+                            width 100%
+                            height 1.38rem
+                        .goodsname
+                            width 100%
+                            height .4rem
+                            padding-left .05rem
+                        .goodsprice
+                            width 100%
+                            height .3rem
+                            padding-left .05rem
+                            span 
+                                font-size .18rem
+                                color #ED145B
+                            i 
+                                text-decoration line-through
+                                font-size .13rem
+            
+                    
+                    
+        
+               
+                
 
 
 
