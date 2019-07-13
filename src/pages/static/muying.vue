@@ -121,14 +121,14 @@ async mounted() {
             height 1.68rem
             border-bottom .08rem solid #f5f5f5
             img 
-                width .8rem
+                width 25%
                 height .8rem
          div:nth-child(5)
             width 100%
             height .88rem
             border-bottom .08rem solid #f5f5f5
             img 
-                width 1.6rem
+                width 50%
                 height .8rem
         div:nth-child(6)
                 width 100%
@@ -144,7 +144,7 @@ async mounted() {
             width 100%
             height 4.8rem
             img 
-                width 1.6rem
+                width 50%
                 height 1.6rem
         div:nth-child(8)
                 width 100%

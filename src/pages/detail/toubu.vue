@@ -1,4 +1,6 @@
 <template>
+<!-- 这里一级路由 -->
+    <router-link active-class="active" exact to="/search">
     <div class="toubu">
         <div>
             <img src="//f0.jmstatic.com/btstatic/h5/common/search_btn.png" alt="">
@@ -8,6 +10,7 @@
             <img src="//f0.jmstatic.com/btstatic/h5/index/search_list2.png" alt="">
         </div>
     </div>
+    </router-link>
 </template>
 
 
