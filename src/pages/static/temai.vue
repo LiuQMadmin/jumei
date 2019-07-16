@@ -3,7 +3,9 @@
     <div>
       <temai v-for="item in resultlist" :key="item.item_id" :item="item"></temai>
       <weibu></weibu>
+      <div class="kongbai"></div>
     </div>
+    
   </div>
 </template>
 <script>
@@ -45,6 +47,8 @@ export default {
 
 <style lang="stylus" scoped>
 #temai
-    height 4.3rem
+    height 5.5rem
     overflow scroll
+    .kongbai
+      height 1.2rem
 </style>

@@ -1,31 +1,57 @@
 <template>
-
+<div class="container">
     <div class="toubukuang">
         <div @click="handleClick">
              <span class="yo-ico">&#xf0343;</span>
         </div>
         <div>
             <img src="//f0.jmstatic.com/btstatic/h5/common/search_btn.png" alt="">
-            <input type="text" placeholder="搜索商品名称、品牌、功效" id="search_input" class="search_input">
+            <input @keyup="inputFunction()" v-model="value" type="text" placeholder="搜索商品名称、品牌、功效" id="search_input" class="search_input">
         </div>
-        <div>
-            <img src="//f0.jmstatic.com/btstatic/h5/index/search_list2.png" alt="">
+        
+        <div class="Mysearch">
+            <router-link :to="{path:'/searchresult', query:{ name:value }}">
+            <span class="suoyin">搜索</span>
+         </router-link>
         </div>
     </div>
+     <div  v-for="(item,index) in result" :key="index">
+         <router-link class="jieguo" target="div" :to="{path:'/searchresult', query:{ name:item }}">
+         <img src="//f0.jmstatic.com/btstatic/h5/common/search_btn.png" alt="">
+         <span class="import">{{item}}</span>
+        <span class="yo-ico">&#xe62d;</span>
+         </router-link>
+     </div>
+</div>
 </template>
 <script>
+import http from '../../../utils/http'
 export default {
+    data(){
+        return {
+            result:[],
+            value:""
+        }
+    },
     methods: {
         handleClick() {
             // 这个可以进到上一页
             this.$router.go(-1)
+        },
+        async inputFunction(){
+            let result=await http.get({
+            url:"/index/requestDelegate?url=http%3A%2F%2Fmobile.jumei.com%2Fmsapi%2Fsearch%2Fsuggestion.json%3Fkeyword%3D"+this.value+"%26url%3Dhttp%3A%2F%2Fmobile.jumei.com%2Fmsapi%2Fsearch%2Fsuggestion.json"
+            })
+            this.result=result.data
         }
   },
 }
 </script>
 
-
 <style lang="stylus" scoped>
+.container
+    background #fff
+    height 100%
 .toubukuang
     height .3898rem
     width 100%
@@ -66,10 +92,26 @@ export default {
         width .4rem
         display flex
         align-items center
-        padding-left .1rem
-        img 
-            width .2rem
-            height .15rem
+        padding-left .05rem
+        color #999 
+        .suoyin
+            color #999 
+.jieguo
+    width 100%
+    height .37rem
+    display flex
+    line-height .37rem
+    img 
+        width .13rem
+        height .13rem
+        margin .1rem
+    .import
+        flex 1
+        color #000 !important
+    .yo-ico 
+        font-size .1rem
+        color #999 
+        padding-right .05rem
 </style>
 
 

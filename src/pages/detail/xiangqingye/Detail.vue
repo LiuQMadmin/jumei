@@ -24,13 +24,12 @@
                 </div>
             </div>
             <div class="price">
-                <span class="price-one">￥105</span>
-                <span class="price-two">￥148</span>
+                <span class="price-one">￥{{jumei_price}}</span>&nbsp;
+                <span class="price-two">{{market_price}}</span>
                 <span class="price-there">417人已购买</span>
             </div>
             <div class="normal_desc">
                 <span class="desc_iconv2">聚美自营</span>
-                <!-- 【官方授权】爱敬AGE20'S牛奶亮白遮瑕精华气垫粉底膏12.5g*2 -->
                 {{name}}
             </div>
             <div class="postage-wrap">
@@ -99,7 +98,7 @@
                 <span class="yo-ico">&#xe60c;</span>
                 <i>购物车</i>
             </div>
-            <div class="nav-there">
+            <div class="nav-there" @click="Gouwuche(`${name}`,imgresult,jumei_price)">
                 <span>加入购物车</span>
             </div>
             <div class="nav-four">
@@ -126,7 +125,9 @@ export default {
             //  这个里面接受轮播图片的链接
             imgresult:[],
             name:"",
-            datacaini:{}
+            datacaini:{},
+            jumei_price:0,
+            market_price:0
         }
     },
     // 这个是为了过滤标题名字然后进行添加省略符
@@ -140,6 +141,8 @@ export default {
     },
     async activated() {
         let imgurl=this.$route.params.id
+        this.jumei_price=this.$route.params.jumei_price
+        this.market_price=this.$route.params.market_price
         if(/^[ht]/.test(imgurl)){
             let result=await http.get({
              url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=global_deal"
@@ -151,6 +154,12 @@ export default {
             this.name=this.imgresult.qrshare_product_name
             this.datacaini=resultcaini.item_list
             // console.log(result.data.properties)
+        }else if(/^[1-9]/.test(imgurl)){
+            let result=await http.get({
+             url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=jumei_mall"
+            })
+            this.imgresult=result.data
+            this.name=this.imgresult.qrshare_product_name
         }else{
              let result=await http.get({
              url:"/product/ajaxStaticDetail?item_id="+imgurl+"&type=jumei_pop"
@@ -168,6 +177,14 @@ export default {
     handleClick() {
         // 这个可以进到上一页
         this.$router.go(-1)
+    },
+    Gouwuche(name,imgresult,jumei_price){
+        this.$store.commit("increment",{
+            name,
+            id:imgresult.item_id,
+            url:imgresult.image_url_set.single_many[0][480],
+            jumei_price,
+        })
     }
   },
 }

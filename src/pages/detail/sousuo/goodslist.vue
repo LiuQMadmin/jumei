@@ -1,5 +1,5 @@
 <template>
-        <div  @click="handleClick(item)" class="list" :style="{backgroundImage: 'url('+item.image_url_set.dx_image.url['480']+')'}">
+        <div  @click="handleClick(item)" class="list" :style="{backgroundImage: 'url('+item.image_url_set.single['480']+')'}">
         <div>
             <div class="proname">{{item.name}}
             </div>
@@ -8,7 +8,7 @@
             </div>
 
             <div>
-                {{item.deal_comments_number}}条评论
+                <!-- {{item.deal_comments_number}}条评论 -->
             </div>
         </div>
     </div>
@@ -22,10 +22,10 @@ export default {
             name: 'detail',
             // 把这个参数传递给动态路由
             params: {
-                id:item.item_id,
-                jumei_price:item.jumei_price,
-                market_price:item.market_price
-                }
+            id:item.item_id,
+            jumei_price:item.jumei_price,
+            market_price:item.market_price
+            }
         })
         }
     }
@@ -38,7 +38,9 @@ export default {
     height 1.1092rem
     border-bottom .08rem solid #F5F5F5
     padding-right .1rem
-    background-size cover
+    background-size .85rem .85rem
+    background-repeat no-repeat
+    background-position .1rem 
     div:nth-child(1)
         width 1.74rem
         height 100%
@@ -46,7 +48,6 @@ export default {
         div:nth-child(1)
             width 1.74rem
             height .34rem
-            // color #333
             font-size .13rem
             margin-top .1rem
         div:nth-child(2)

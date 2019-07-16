@@ -12,6 +12,8 @@ import pintuan from "../pages/pintuan/pintuan"
 import wode from "../pages/wode/wode"
 import Detail from "../pages/detail/xiangqingye/Detail"
 import Sousuo from "../pages/detail/sousuo/sousuo"
+import Searchresult from "../pages/detail/sousuo/Searchresult"
+import gouwuche from "../pages/cart/gouwuche"
 Vue.use(VueRouter)
 let routes=[
     {
@@ -72,6 +74,10 @@ let routes=[
         component:pintuan,
     },
     {
+        path:"/gouwuche",
+        component:gouwuche,
+    },
+    {
         path:"/wode",
         component:wode,
     },
@@ -86,6 +92,12 @@ let routes=[
         // 这个是push的时候起到的作用，能根据这个name来添加模板
         name: 'Sousuo',
         component: Sousuo
+    },
+    {
+        path: '/searchresult',
+        // 这个是push的时候起到的作用，能根据这个name来添加模板
+        name: 'searchresult',
+        component: Searchresult
     }
    
 ]

@@ -89,7 +89,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 #qingshe
-    height 4rem
+    height 4.3rem
     .qingshe
         .swiper-wrapper
             .swiper-slide
